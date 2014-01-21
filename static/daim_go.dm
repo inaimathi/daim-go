@@ -1,19 +1,14 @@
 outer
-  @init from-js
-  @init -> { __ | tap }
   @req xhr-send
   @board dom-set-html
   @res sse-receive /yodel
   @go-form dom-on-submit
-
-  $pieces []
-
-  @our-input dom-on-change
   @output dom-set-text
 
-  @go-form -> make-move
-
+  $pieces []
   piece
+
+  @go-form -> make-move
 
   @res -> res-decode -> @output
           res-decode -> { __ | >$pieces.#0 }-> piece -> @board
